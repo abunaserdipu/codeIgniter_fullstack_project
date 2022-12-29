@@ -18,7 +18,9 @@
             </div>
         </div><!-- /.container-fluid -->
     </section>
-
+    <?php if (session()->has('errors')) {
+        $errors = session()->errors;
+    } ?>
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
@@ -32,7 +34,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="<?= base_url('products/create') ?>">
+                        <form method="post" action="<?= base_url('products/create') ?>" enctype="multipart/form-data">
                             <div class="card-body">
                                 <?php
                                 // if (isset($validation)) {
@@ -46,44 +48,50 @@
                                 ?>
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Product Name</label>
-                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name" name="product_name" value="<?php echo set_value('product_name') ?>">
-                                    <span class="text-danger"><?php
-                                                                if (isset($validation)) {
-                                                                    $error = $validation->getError('product_name');
-                                                                    print_r($error);
-                                                                }
+                                    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter Product Name" name="product_name" value="<?php echo old('product_name') ?>">
+                                    <span class="text-danger"><?=
+                                                                isset($errors['product_name']) ? $errors['product_name'] : '';
                                                                 ?></span>
                                 </div>
                                 <div class="form-group">
+                                    <label for="exampleInputEmail1">Product Category</label>
+                                    <select name="category_name" class="form-control" id="">
+                                        <option value="">Select one</option>
+                                        <?php foreach ($categories as $category) : ?>
+                                            <option value="<?= $category['id']; ?>"><?= $category['category_name']; ?></option>
+                                        <?php endforeach ?>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <label for="exampleInputPassword1">Product Details</label>
-                                    <textarea class="form-control" id="summernote" placeholder="Enter Product Details" name="product_details"><?php echo set_value('product_details') ?></textarea>
-                                    <span class="text-danger"><?php
-                                                                if (isset($validation)) {
-                                                                    $error = $validation->getError('product_details');
-                                                                    print_r($error);
-                                                                }
+                                    <textarea class="form-control" id="summernote" placeholder="Enter Product Details" name="product_details"><?php echo old('product_details') ?></textarea>
+                                    <span class="text-danger"><?=
+                                                                isset($errors['product_details']) ? $errors['product_details'] : '';
                                                                 ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Price</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="product_price" value="<?php echo set_value('product_price') ?>">
-                                    <span class="text-danger"><?php
-                                                                if (isset($validation)) {
-                                                                    $error = $validation->getError('product_price');
-                                                                    print_r($error);
-                                                                }
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="product_price" value="<?php echo old('product_price') ?>">
+                                    <span class="text-danger"><?=
+                                                                isset($errors['product_price']) ? $errors['product_price'] : '';
                                                                 ?></span>
+                                    <div class="form-group">
+                                        <label for="exampleInputPassword1">Product Image</label>
+                                        <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Image" name="product_image" value="<?php echo old('product_image') ?>">
+                                        <span class="text-danger"><?=
+                                                                    isset($errors['product_image']) ? $errors['product_image'] : '';
+                                                                    ?></span>
+                                    </div>
+                                    <div class="form-check">
+                                        <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                                        <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                                    </div>
                                 </div>
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                    <label class="form-check-label" for="exampleCheck1">Check me out</label>
-                                </div>
-                            </div>
-                            <!-- /.card-body -->
+                                <!-- /.card-body -->
 
-                            <div class="card-footer">
-                                <input type="submit" class="btn btn-primary" value="Submit" />
-                            </div>
+                                <div class="card-footer">
+                                    <input type="submit" class="btn btn-primary" value="Submit" />
+                                </div>
                         </form>
                     </div>
 

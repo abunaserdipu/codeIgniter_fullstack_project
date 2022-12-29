@@ -46,16 +46,25 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Details</label>
-                                    <textarea class="form-control" id="summernote" placeholder="Enter Product Details" name="product_details"><?= old('product_name') ? old('product_details') : $product['product_details'] ?></textarea>
+                                    <textarea class="form-control" id="summernote" placeholder="Enter Product Details" name="product_details"><?= old('product_details') ? old('product_details') : $product['product_details'] ?></textarea>
                                     <span class="text-danger"><?=
                                                                 isset($errors['product_details']) ? $errors['product_details'] : '';
                                                                 ?></span>
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Product Price</label>
-                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="product_price" value="<?= old('product_name') ? old('product_price') : $product['product_price'] ?>">
+                                    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Product Price" name="product_price" value="<?= old('product_price') ? old('product_price') : $product['product_price'] ?>">
                                     <span class="text-danger"><?=
                                                                 isset($errors['product_price']) ? $errors['product_price'] : '';
+                                                                ?></span>
+                                </div>
+                                <h3>product image</h3>
+                                <img src="<?= $product['product_image'] ?>" alt="product image">
+                                <div class="form-group">
+                                    <label for="exampleInputPassword1">Product Image</label>
+                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Product image" name="product_image" value="<?= old('product_image') ? old('product_image') : $product['product_image'] ?>">
+                                    <span class="text-danger"><?=
+                                                                isset($errors['product_image']) ? $errors['product_image'] : '';
                                                                 ?></span>
                                 </div>
                             </div>

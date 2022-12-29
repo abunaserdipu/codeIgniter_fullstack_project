@@ -45,6 +45,7 @@
                                         <th>Product Name</th>
                                         <th>Product Details</th>
                                         <th>Product Price</th>
+                                        <th>image</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -56,6 +57,7 @@
                                             </td>
                                             <td><?= $product['product_details'] ?></td>
                                             <td><?= $product['product_price'] ?></td>
+                                            <td><img width="100px" src="<?= $product['product_image'] ?>" alt="product image"></td>
                                             <td><a href="products/delete/<?= $product['id'] ?>"><i class="fa fa-trash" style="color:red;"></i></a>
                                                 <a href="products/edit/<?= $product['id'] ?>"><i class="fa fa-edit" style="color:gold;"></i></a>
                                             </td>
