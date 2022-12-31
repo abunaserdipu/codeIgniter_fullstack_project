@@ -49,6 +49,6 @@ class SigninController extends Controller
     {
         $session = session();
         $session->destroy();
-        redirect()->to('/users/signin');
+        return redirect()->to('/users/signin');
     }
 }

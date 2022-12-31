@@ -12,7 +12,7 @@
             <a href="#" class="nav-link">Contact</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="<?= site_url('/users/signout') ?>">Signout</a>
+            <a href="<?= site_url('/users/signout') ?>" class="nav-link"><i class="fa fa-sign-out-alt"></i>Signout</a>
         </li>
     </ul>
 
