@@ -2,6 +2,8 @@
 
 namespace Config;
 
+use App\Filters\AuthGuard;
+
 // Create a new instance of our RouteCollection class.
 $routes = Services::routes();
 
@@ -35,10 +37,19 @@ $routes->setAutoRoute(true);
 
 // We get a performance increase by specifying the default
 // route since we don't have to scan directories.
-$routes->get('/', 'Dashboard::index');
-$routes->resource('Products');
+$routes->group('dashboard', ['filter' => 'authguard'], static function ($routes) {
+    $routes->get('/', 'Dashboard::index');
+    $routes->resource('Products');
+    $routes->get('/users/signout', 'SigninController::signout');
+});
 
-/*
+
+$routes->get('/users/signup', 'SignupController::index');
+$routes->post('/users/store', 'SignupController::store');
+$routes->get('/users/signin', 'SigninController::index');
+$routes->post('/users/login', 'SigninController::auth');
+
+/*s
  * --------------------------------------------------------------------
  * Additional Routing
  * --------------------------------------------------------------------
