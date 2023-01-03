@@ -22,9 +22,9 @@ class Products extends ResourceController
     public function index()
     {
         $model = new ProductModel();
-        $data['products'] = $model->orderBy('id', 'DESC')->findAll();
-        // return view("products/product_list", $data);
-        return $this->respond($data);
+        $data['products'] = $model->orderBy('id', 'ASC')->findAll();
+        return view("products/product_list", $data);
+        // return $this->respond($data);
     }
 
     /**
@@ -61,9 +61,8 @@ class Products extends ResourceController
             'product_name' => 'required|min_length[5]|max_length[25]',
             'product_details' => 'required|min_length[20]',
             'product_price' => 'required|numeric',
-            'product_category' => 'required',
             'product_image' => [
-                'uploaded[product_image]',
+                // 'uploaded[product_image]',
                 'mime_in[product_image,image/jpg,image/jpeg,image/png]',
                 'max_size[product_image,1024]',
             ]
@@ -73,9 +72,6 @@ class Products extends ResourceController
                 'required' => 'Product name must be filled',
                 'min_length' => 'Minimum length is 5!',
                 'max_length' => 'Maximum length is 25!'
-            ],
-            'product_category' => [
-                'requried' => 'product category must be filled',
             ],
             'product_details' => [
                 'required' => 'Product details must be filled',
@@ -97,13 +93,13 @@ class Products extends ResourceController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         } else {
             $img = $this->request->getFile('product_image');
-            $path = "/assets/" . 'uploads/';
+            $path = "assets/" . 'uploads/';
             $img->move($path);
             $model = new ProductModel();
             $data['product_name'] = $this->request->getPost('product_name');
-            $data['product_category'] = $this->request->getPost('product_name');
             $data['product_details'] = $this->request->getPost('product_details');
             $data['product_category'] = $this->request->getPost('category_name');
+            $data['product_price'] = $this->request->getPost('product_price');
             $namepath = $path . $img->getName();
             $data['product_image'] = $namepath;
 
@@ -144,7 +140,7 @@ class Products extends ResourceController
             'product_details' => 'required|min_length[10]',
             'product_price' => 'required|numeric',
             'product_image' => [
-                'uploaded[product_image]',
+                // 'uploaded[product_image]',
                 'mime_in[product_image,image/jpg,image/jpeg,image/png]',
                 'max_size[product_image,1024]',
             ]
@@ -173,7 +169,7 @@ class Products extends ResourceController
             return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
         } else {
             $img = $this->request->getFile('product_image');
-            $path = "/assets/" . 'uploads/';
+            $path = "assets/" . 'uploads/';
             $img->move($path);
             $namepath = $path . $img->getName();
             $data['product_image'] = $namepath;

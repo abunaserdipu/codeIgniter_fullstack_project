@@ -42,9 +42,9 @@
                                 <thead>
                                     <tr>
                                         <th>ID</th>
-                                        <th>Product Name</th>
-                                        <th>Product Details</th>
-                                        <th>Product Price</th>
+                                        <th>Student Name</th>
+                                        <th>Student Details</th>
+                                        <th>Admission fee</th>
                                         <th>image</th>
                                         <th>Action</th>
                                     </tr>
@@ -57,8 +57,8 @@
                                             </td>
                                             <td><?= $product['product_details'] ?></td>
                                             <td><?= $product['product_price'] ?></td>
-                                            <td><img width="100px" src="<?= $product['product_image'] ?>" alt="product image"></td>
-                                            <td><a href="products/delete/<?= $product['id'] ?>"><i class="fa fa-trash" style="color:red;"></i></a>
+                                            <td><img width="100px" src="<?= site_url() . $product['product_image'] ?>" alt="product image"></td>
+                                            <td><a href="products/delete/<?= $product['id'] ?>" class="delete"><i class="fa fa-trash" style="color:red;"></i></a>
                                                 <a href="products/edit/<?= $product['id'] ?>"><i class="fa fa-edit" style="color:gold;"></i></a>
                                             </td>
                                         </tr>
@@ -93,3 +93,14 @@
 </div>
 
 <?php echo view("layouts/product_footer.php") ?>
+<script>
+    $(function() {
+        $(".delete").click(function(e) {
+            e.preventDefault();
+            $.post(this.href, function() {
+                alert('Successfully Deleted');
+                location.reload();
+            });
+        });
+    });
+</script>

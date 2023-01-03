@@ -32,7 +32,7 @@
                         </div>
                         <!-- /.card-header -->
                         <!-- form start -->
-                        <form method="post" action="<?= base_url('products/update/' . $product['id']) ?>">
+                        <form method="post" action="<?= base_url('products/update/' . $product['id']) ?>" enctype="multipart/form-data">
                             <div class="card-body">
                                 <?php if (session()->has('errors')) {
                                     $errors = session()->errors;
@@ -59,10 +59,10 @@
                                                                 ?></span>
                                 </div>
                                 <h3>product image</h3>
-                                <img src="<?= $product['product_image'] ?>" alt="product image">
+                                <img src="/<?= $product['product_image'] ?>" alt="product image" width="100px">
                                 <div class="form-group">
-                                    <label for="exampleInputPassword1">Product Image</label>
-                                    <input type="file" class="form-control" id="exampleInputPassword1" placeholder="Enter Product image" name="product_image" value="<?= old('product_image') ? old('product_image') : $product['product_image'] ?>">
+                                    <label>Product Image</label>
+                                    <input type="file" class="form-control" placeholder="Enter Product image" name="product_image">
                                     <span class="text-danger"><?=
                                                                 isset($errors['product_image']) ? $errors['product_image'] : '';
                                                                 ?></span>

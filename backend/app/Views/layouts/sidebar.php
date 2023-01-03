@@ -13,7 +13,7 @@
                 <img src="/assets/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
             </div>
             <div class="info">
-                <a href="#" class="d-block">Alexander Pierce</a>
+                <a href="#" class="d-block"><?= session()->get('name') ?></a>
             </div>
         </div>
 
@@ -86,7 +86,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-table"></i>
                         <p>
-                            Products
+                            Students
                             <i class="fas fa-angle-left right"></i>
                         </p>
                     </a>
@@ -94,13 +94,13 @@
                         <li class="nav-item">
                             <a href="products" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>All products</p>
+                                <p>All students</p>
                             </a>
                         </li>
                         <li class="nav-item">
                             <a href="products/new" class="nav-link">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>New product</p>
+                                <p>New student</p>
                             </a>
                         </li>
                     </ul>
