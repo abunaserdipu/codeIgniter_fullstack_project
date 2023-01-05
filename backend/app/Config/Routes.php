@@ -45,11 +45,15 @@ $routes->group('', ['filter' => 'authGuard'], static function ($routes) {
 });
 
 $routes->get('/query-builder', 'QueryBuilder::index');
+$routes->get('/list', 'TestController::productList');
+$routes->get('/view_layouts/home', 'TestController::index');
+$routes->get('/view_layouts/about', 'TestController::about');
 $routes->get('/users/signup', 'SignupController::index');
 $routes->post('/users/store', 'SignupController::store');
 $routes->get('/users/signin', 'SigninController::index');
 $routes->post('/users/login', 'SigninController::auth');
 $routes->get('/frontend/products', 'Frontend::ProductList');
+
 
 /*s
  * --------------------------------------------------------------------

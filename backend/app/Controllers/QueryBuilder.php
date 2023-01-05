@@ -114,8 +114,15 @@ class QueryBuilder extends BaseController
         // print_r($query);
 
         // **************** 8
-        $db = \Config\Database::connect('another');
-        $builder = $db->table('orders,customers')->select('status,customerName')->where('orders.customerNumber = customers.customerNumber');
+        // $db = \Config\Database::connect('another');
+        // $builder = $db->table('orders,customers')->select('status,customerName')->where('orders.customerNumber = customers.customerNumber');
+        // $query = $builder->get()->getResult();
+        // echo "<pre>";
+        // print_r($query);
+
+        // **************** 9
+        $db = $db = \Config\Database::connect('another');
+        $builder = $db->table('employees,orders,customers')->select('status,employees.firstName,jobTitle')->where('employees.employeeNumber = customers.salesRepEmployeeNumber and orders.customerNumber = customers.customerNumber and status = "shipped" and jobTitle = "Sales Rep"');
         $query = $builder->get()->getResult();
         echo "<pre>";
         print_r($query);
