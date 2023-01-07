@@ -121,8 +121,22 @@ class QueryBuilder extends BaseController
         // print_r($query);
 
         // **************** 9
+        // $db = $db = \Config\Database::connect('another');
+        // $builder = $db->table('employees,orders,customers')->select('status,employees.firstName,jobTitle')->where('employees.employeeNumber = customers.salesRepEmployeeNumber and orders.customerNumber = customers.customerNumber and status = "shipped" and jobTitle = "Sales Rep"');
+        // $query = $builder->get()->getResult();
+        // echo "<pre>";
+        // print_r($query);
+
+        // **************** 10
+        // $db = $db = \Config\Database::connect('another');
+        // $builder = $db->table('orders,customers')->select('status,customerName,city')->where('customers.customerNumber = orders.customerNumber and status = "Shipped"');
+        // $query = $builder->get()->getResult();
+        // echo "<pre>";
+        // print_r($query);
+
+        // **************** 11
         $db = $db = \Config\Database::connect('another');
-        $builder = $db->table('employees,orders,customers')->select('status,employees.firstName,jobTitle')->where('employees.employeeNumber = customers.salesRepEmployeeNumber and orders.customerNumber = customers.customerNumber and status = "shipped" and jobTitle = "Sales Rep"');
+        $builder = $db->table('orders')->select('orderNumber,orderDate');
         $query = $builder->get()->getResult();
         echo "<pre>";
         print_r($query);

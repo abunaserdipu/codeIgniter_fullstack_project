@@ -22,7 +22,7 @@ class TestController extends BaseController
     {
         $model = new ProductModel();
         $data = [
-            'products' => $model->paginate(2),
+            'products' => $model->paginate(3, 'group1'),
             'pager' => $model->pager,
         ];
 

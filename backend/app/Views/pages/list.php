@@ -29,14 +29,8 @@
             <?php endforeach; ?>
         </table>
 
-        <div class="pagination justify-content-center">
-            <?php if ($pager) : ?>
-                <?php $pagi_path = 'index.php/list'; ?>
-                <?php $pager->setPath($pagi_path); ?>
-                <?= $pager->links() ?>
-            <?php endif ?>
-        </div>
 
+        <?php echo $pager->links('group1', 'bs_full'); ?>
         <!-- <nav aria-label="Page navigation example">
         <ul class="pagination">
             <?php if ($pager) : ?>

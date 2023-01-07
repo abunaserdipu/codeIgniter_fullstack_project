@@ -105,7 +105,7 @@ class Products extends ResourceController
 
             $model = new ProductModel();
             $model->save($data);
-            return redirect()->to('products');
+            return redirect()->to('products')->with('msg', 'Inserted Successfully');
         }
     }
 
@@ -189,9 +189,9 @@ class Products extends ResourceController
      */
     public function delete($id = null)
     {
+        // echo $id;
         $model = new ProductModel();
-        if ($model->delete($id)) {
-            return redirect()->to("products");
-        }
+        $model->delete($id);
+        return redirect()->to("products");
     }
 }

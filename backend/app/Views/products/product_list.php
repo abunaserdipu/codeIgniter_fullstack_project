@@ -8,12 +8,24 @@
                 <div class="col-sm-6">
                     <h1 class="m-0">Dashboard</h1>
                     <?php if (session()->has('msg')) : ?>
-                        <div class="alert alert-success">
-                            <strong>Success!</strong> <?= session()->msg; ?>
-                        </div>
+                        <script>
+                            function tempAlert(msg, duration) {
+                                var el = document.createElement("div");
+                                el.setAttribute('class', 'alert alert-success text-white');
+                                el.setAttribute("style", "position:absolute;top:20%;left:50%;");
+                                el.innerHTML = msg;
+                                setTimeout(function() {
+                                    el.parentNode.removeChild(el);
+                                }, duration);
+                                document.body.appendChild(el);
+                            }
 
-
+                            tempAlert('<?= session()->msg; ?>', 5000);
+                        </script>
                     <?php endif; ?>
+                    <script>
+                        alertify.alert('Ready!');
+                    </script>
                 </div><!-- /.col -->
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -58,8 +70,15 @@
                                             <td><?= $product['product_details'] ?></td>
                                             <td><?= $product['product_price'] ?></td>
                                             <td><img width="100px" src="<?= site_url() . $product['product_image'] ?>" alt="product image"></td>
-                                            <td><a href="products/delete/<?= $product['id'] ?>" class="delete"><i class="fa fa-trash" style="color:red;"></i></a>
-                                                <a href="products/edit/<?= $product['id'] ?>"><i class="fa fa-edit" style="color:gold;"></i></a>
+                                            <td class="d-flex justify-content-between align-items-center">
+                                                <!-- edit -->
+                                                <a href="products/edit/<?= $product['id'] ?>" class="btn btn-warning"></i>Edit</a>
+                                                <!-- delete -->
+                                                <form method="post" action="products/delete/<?= $product['id'] ?>">
+                                                    <?= csrf_field() ?>
+                                                    <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete?')">Delete</button>
+                                                </form>
+
                                             </td>
                                         </tr>
 
